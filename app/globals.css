@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-steel-800 antialiased;
+}
+
+@layer components {
+  .container-max {
+    @apply mx-auto w-full max-w-[90rem] px-4 sm:px-6 lg:px-8;
+  }
+  .container-wide {
+    @apply mx-auto w-full max-w-[1440px] px-5 sm:px-8 lg:px-12;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-brand-600 text-white shadow-premium hover:bg-brand-700 focus:ring-brand-500;
+  }
+  .btn-whatsapp {
+    @apply btn bg-emerald-500 text-white shadow-md hover:bg-emerald-600 focus:ring-emerald-400;
+  }
+  .btn-gold {
+    @apply btn bg-gradient-to-r from-accent-400 to-accent-600 text-steel-900 shadow-[0_10px_30px_-8px_rgba(245,158,11,0.6)] hover:from-accent-500 hover:to-accent-600 focus:ring-accent-400;
+  }
+  .btn-outline {
+    @apply btn border border-steel-300 bg-white text-steel-700 hover:border-brand-400 hover:text-brand-700;
+  }
+  .section {
+    @apply py-16 sm:py-20;
+  }
+  .card {
+    @apply rounded-2xl border border-steel-100 bg-white shadow-card;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-accent-500/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider text-accent-600 ring-1 ring-accent-500/20;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-1.5 w-1.5 rounded-full bg-accent-500;
+  }
+  .heading-underline {
+    @apply relative inline-block;
+  }
+  .heading-underline::after {
+    content: "";
+    @apply absolute -bottom-2 left-1/2 h-1 w-16 -translate-x-1/2 rounded-full bg-gradient-to-r from-accent-400 to-accent-600;
+  }
+  .glass {
+    @apply border border-white/15 bg-white/10 backdrop-blur-xl;
+  }
+  .gradient-text {
+    @apply bg-gradient-to-r from-white via-brand-100 to-accent-400 bg-clip-text text-transparent;
+  }
+  /* Girişte parlayan buton */
+  .btn-shine {
+    @apply relative overflow-hidden;
+  }
+  .btn-shine::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 bg-shine;
+    transform: translateX(-120%);
+    animation: shine 5s ease-in-out infinite;
+  }
+}
+
+/* Animasyonlu degrade arka plan katmanı */
+.animated-gradient {
+  background: linear-gradient(120deg, #1e3a8a, #1d4ed8, #172554, #1e40af);
+  background-size: 300% 300%;
+  animation: gradientMove 12s ease infinite;
+}
+
+/* Girişte sıralı beliriş (stagger) */
+.stagger > * {
+  opacity: 0;
+  animation: fadeUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.stagger > *:nth-child(1) { animation-delay: 0.05s; }
+.stagger > *:nth-child(2) { animation-delay: 0.15s; }
+.stagger > *:nth-child(3) { animation-delay: 0.25s; }
+.stagger > *:nth-child(4) { animation-delay: 0.35s; }
+.stagger > *:nth-child(5) { animation-delay: 0.45s; }
+.stagger > *:nth-child(6) { animation-delay: 0.55s; }
+
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(24px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+@keyframes gradientMove {
+  0%,100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes shine {
+  0% { transform: translateX(-120%); }
+  60%,100% { transform: translateX(120%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; }
+}
