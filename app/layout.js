@@ -1,5 +1,6 @@
 import "./globals.css";
-import { site } from "@/lib/site";
+import { site, hasVerifiedAddress, hasGeo } from "@/lib/site";
+import { districts, services } from "@/lib/data";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingContact from "@/components/FloatingContact";
@@ -60,25 +61,99 @@ export const viewport = {
 };
 
 export default function RootLayout({ children }) {
-  const businessSchema = {
+  // ---------------------------------------------------------------
+  //  YAPISAL VERİ (Schema.org)
+  //  Not: Doğrulanmış bir açık adres girilene kadar sahte/yaklaşık
+  //  adres beyan edilmez; işletme "hizmet alanı" (service area)
+  //  modeliyle tanımlanır. lib/site.js içindeki postalAddress
+  //  doldurulduğunda schema otomatik olarak LocalBusiness'a yükselir.
+  // ---------------------------------------------------------------
+  const verified = hasVerifiedAddress();
+
+  const areaServed = districts.map((d) => ({
+    "@type": "AdministrativeArea",
+    name: `${d.name}, İstanbul`,
+  }));
+
+  const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "LocalBusiness",
+    "@type": verified ? "LocalBusiness" : "Organization",
+    "@id": `${site.url}/#organization`,
     name: site.name,
     url: site.url,
     telephone: site.phoneRaw,
     email: site.email,
     image: `${site.url}/og.png`,
-    priceRange: "$$",
-    areaServed: { "@type": "City", name: "İstanbul" },
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: "İstanbul",
-      addressCountry: "TR",
-      streetAddress: site.address,
-    },
-    openingHours: "Mo-Su 08:00-22:00",
+    logo: `${site.url}/images/logo-icon.png`,
     description:
-      "İstanbul Avrupa Yakası endüstriyel ve sanayi tipi bulaşık makinesi servisi ve tamircisi.",
+      "İstanbul Avrupa Yakası endüstriyel ve sanayi tipi bulaşık makinesi servisi ve tamircisi. Tüm markalara aynı gün arıza tespiti, tamir, bakım ve yedek parça.",
+    areaServed,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: site.phoneRaw,
+        contactType: "customer service",
+        areaServed: "TR",
+        availableLanguage: ["Turkish"],
+      },
+    ],
+    ...(site.social.length ? { sameAs: site.social } : {}),
+    ...(verified
+      ? {
+          priceRange: "$$",
+          openingHours: "Mo-Su 08:00-22:00",
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: site.postalAddress.streetAddress,
+            addressLocality: site.postalAddress.addressLocality,
+            postalCode: site.postalAddress.postalCode || undefined,
+            addressRegion: "İstanbul",
+            addressCountry: "TR",
+          },
+          ...(hasGeo()
+            ? {
+                geo: {
+                  "@type": "GeoCoordinates",
+                  latitude: site.geo.latitude,
+                  longitude: site.geo.longitude,
+                },
+              }
+            : {}),
+          ...(site.hasMap ? { hasMap: site.hasMap } : {}),
+        }
+      : {}),
+  };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${site.url}/#website`,
+    url: site.url,
+    name: site.name,
+    inLanguage: "tr-TR",
+    publisher: { "@id": `${site.url}/#organization` },
+  };
+
+  const mainServiceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "@id": `${site.url}/#service`,
+    serviceType: "Endüstriyel Bulaşık Makinesi Servisi ve Tamiri",
+    provider: { "@id": `${site.url}/#organization` },
+    areaServed,
+    availableChannel: {
+      "@type": "ServiceChannel",
+      servicePhone: site.phoneRaw,
+      serviceUrl: `${site.url}/iletisim`,
+    },
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "Servis Hizmetleri",
+      itemListElement: services.map((sv) => ({
+        "@type": "Offer",
+        itemOffered: { "@type": "Service", name: sv.title, description: sv.desc },
+      })),
+    },
   };
 
   return (
@@ -92,7 +167,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body className="flex min-h-screen flex-col">
-        <JsonLd data={businessSchema} />
+        <JsonLd data={organizationSchema} />
+        <JsonLd data={websiteSchema} />
+        <JsonLd data={mainServiceSchema} />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />

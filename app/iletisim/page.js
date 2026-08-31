@@ -51,7 +51,7 @@ export default function ContactPage() {
           <div className="card p-8">
             <h2 className="text-xl font-extrabold text-steel-900">Servis Bilgileri</h2>
             <ul className="mt-6 space-y-4 text-sm text-steel-700">
-              <li className="flex items-start gap-3"><MapPinIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" /> <span><strong>Hizmet Bölgesi:</strong> {site.address}</span></li>
+              <li className="flex items-start gap-3"><MapPinIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" /> <span><strong>Hizmet Bölgesi:</strong> {site.serviceArea}</span></li>
               <li className="flex items-start gap-3"><ClockIcon className="mt-0.5 h-5 w-5 flex-shrink-0 text-brand-600" /> <span><strong>Çalışma Saatleri:</strong> {site.workingHours}</span></li>
             </ul>
             <div className="mt-6 rounded-xl bg-brand-50 p-5">

@@ -4,3 +4,6 @@
 .DS_Store
 *.log
 .env*.local
+
+# SEO analiz raporu (public/ altında yayınlanmasın)
+/public/seoanalizraporu.md

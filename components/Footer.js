@@ -31,7 +31,7 @@ export default function Footer() {
               <MailIcon className="h-4 w-4 text-brand-400" /> {site.email}
             </a>
             <span className="flex items-center gap-2">
-              <MapPinIcon className="h-4 w-4 text-brand-400" /> {site.address}
+              <MapPinIcon className="h-4 w-4 text-brand-400" /> {site.serviceArea}
             </span>
           </div>
         </div>

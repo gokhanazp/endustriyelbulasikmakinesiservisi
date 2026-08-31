@@ -1,13 +1,16 @@
 import Link from "next/link";
 import { site, telLink, waLink } from "@/lib/site";
-import { brands, districts, districtPath, services } from "@/lib/data";
+import {
+  districts, districtPath, services, brandPath,
+  priorityBrands, otherBrands, matrixDistricts, matrixPath,
+} from "@/lib/data";
 import BrandCard from "@/components/BrandCard";
 import CtaBand from "@/components/CtaBand";
 import JsonLd from "@/components/JsonLd";
 import Reveal from "@/components/Reveal";
 import {
   PhoneIcon, WhatsAppIcon, WrenchIcon, ClockIcon, ShieldIcon,
-  CheckIcon, MapPinIcon, StarIcon, ArrowIcon, DropletIcon,
+  CheckIcon, MapPinIcon, ArrowIcon, DropletIcon,
   DishwasherIcon, CogIcon, SparkleIcon,
 } from "@/components/Icons";
 
@@ -155,13 +158,14 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Yüzen rozet: puan */}
+              {/* Yüzen rozet: hizmet kapsamı (doğrulanabilir bilgi) */}
               <div className="absolute -left-4 top-6 flex items-center gap-2 rounded-2xl bg-white px-4 py-3 shadow-premium ring-1 ring-steel-100 sm:-left-6">
-                <div className="flex flex-col">
-                  <div className="flex items-center gap-0.5 text-accent-500">
-                    {[...Array(5)].map((_, i) => <StarIcon key={i} className="h-4 w-4" />)}
-                  </div>
-                  <span className="mt-0.5 text-xs font-bold text-steel-700">5.0 · Müşteri puanı</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand-600 text-white">
+                  <WrenchIcon className="h-5 w-5" />
+                </span>
+                <div className="flex flex-col leading-tight">
+                  <span className="text-sm font-extrabold text-steel-900">24 Marka</span>
+                  <span className="text-[11px] font-semibold text-steel-500">Tüm modellere servis</span>
                 </div>
               </div>
 
@@ -275,10 +279,77 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-            {brands.map((b) => (
-              <BrandCard key={b.slug} brand={b} />
-            ))}
+          {/* ÖNCELİKLİ MARKALAR — en çok servis verdiğimiz 4 marka */}
+          <div className="mt-12">
+            <div className="flex items-center gap-3">
+              <h3 className="text-sm font-black uppercase tracking-wider text-steel-900">
+                En Çok Servis Verdiğimiz Markalar
+              </h3>
+              <span className="h-px flex-1 bg-gradient-to-r from-accent-400/60 to-transparent" />
+            </div>
+
+            <div className="mt-6 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+              {priorityBrands().map((b) => (
+                <div
+                  key={b.slug}
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-steel-100 bg-white p-6 shadow-card transition-all duration-300 hover:-translate-y-1.5 hover:border-accent-300 hover:shadow-premium"
+                >
+                  <span className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-accent-400 to-accent-600" />
+                  <div className="flex items-center gap-3">
+                    <span className="flex h-14 w-14 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white p-1.5 ring-1 ring-steel-100">
+                      <img
+                        src={`/logos/${b.slug}.png`}
+                        alt={`${b.name} bulaşık makinesi servisi`}
+                        className="h-full w-full object-contain"
+                        loading="lazy"
+                      />
+                    </span>
+                    <Link href={brandPath(b)} className="text-lg font-extrabold text-steel-900 hover:text-brand-700">
+                      {b.name}
+                    </Link>
+                  </div>
+
+                  <p className="mt-3 text-sm leading-relaxed text-steel-600">
+                    {b.models.length}+ {b.name} modeline arıza tespiti, onarım, periyodik
+                    bakım ve yedek parça hizmeti.
+                  </p>
+
+                  <div className="mt-4 flex flex-wrap gap-1.5">
+                    {matrixDistricts().slice(0, 6).map((d) => (
+                      <Link
+                        key={d.slug}
+                        href={matrixPath(b, d)}
+                        className="rounded-full bg-steel-50 px-2.5 py-1 text-[11px] font-semibold text-steel-600 transition hover:bg-brand-50 hover:text-brand-700"
+                      >
+                        {d.name}
+                      </Link>
+                    ))}
+                  </div>
+
+                  <Link
+                    href={brandPath(b)}
+                    className="mt-5 inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-accent-600"
+                  >
+                    {b.name} Servisi <ArrowIcon className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* DİĞER MARKALAR */}
+          <div className="mt-12">
+            <div className="flex items-center gap-3">
+              <h3 className="text-sm font-black uppercase tracking-wider text-steel-900">
+                Servis Verdiğimiz Diğer Markalar
+              </h3>
+              <span className="h-px flex-1 bg-gradient-to-r from-steel-200 to-transparent" />
+            </div>
+            <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+              {otherBrands().map((b) => (
+                <BrandCard key={b.slug} brand={b} />
+              ))}
+            </div>
           </div>
 
           {/* Yardımcı CTA */}

@@ -106,6 +106,26 @@ export default function BlogPost({ params }) {
               </div>
             ))}
 
+            {post.related && post.related.length > 0 && (
+              <div className="mt-10 rounded-2xl border border-steel-100 bg-steel-50 p-6">
+                <h2 className="text-sm font-black uppercase tracking-wider text-steel-500">
+                  İlgili Servis Sayfaları
+                </h2>
+                <div className="mt-4 flex flex-col gap-2">
+                  {post.related.map((r) => (
+                    <Link
+                      key={r.href}
+                      href={r.href}
+                      className="group inline-flex items-center gap-1.5 text-sm font-bold text-brand-700 hover:text-accent-600"
+                    >
+                      {r.label}
+                      <ArrowIcon className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" />
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {post.conclusion && (
               <div className="mt-10 flex items-start gap-3 rounded-2xl border border-brand-100 bg-brand-50 p-6">
                 <CheckIcon className="mt-1 h-5 w-5 flex-shrink-0 text-brand-600" />
