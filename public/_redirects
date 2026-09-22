@@ -1,0 +1,65 @@
+# =============================================================
+#  301 YONLENDIRMELERI - Cloudflare Pages
+# =============================================================
+# 31 Agustos 2026'da yayina giren 48 adet marka x ilce sayfasi,
+# ilce duzeyinde gercek operasyonel veri olmadigi icin buyuk olcude
+# sablondu ve Google tarafindan doorway kumesi olarak okundu.
+# Inoksan (2.) ve Oztiryakiler (4.) siralamalari bu deploy'dan sonra
+# kayboldu. Sayfalar kaldirildi; her biri kendi marka sayfasina
+# 301 ile yonlendiriliyor, boylece biriken sinyal marka sayfasinda
+# toplaniyor.
+#
+# Cloudflare Pages: yonlendirmeler statik dosyalardan once calisir.
+# Limit 2.000 statik kural; asagida 48 kural var.
+
+/sisli-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/beyoglu-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/fatih-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/besiktas-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/bakirkoy-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/bahcelievler-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/kucukcekmece-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/esenyurt-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/basaksehir-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/zeytinburnu-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/bagcilar-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+/beylikduzu-empero-bulasik-makinesi-servisi  /empero-bulasik-makinesi-servisi  301
+
+/sisli-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/beyoglu-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/fatih-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/besiktas-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/bakirkoy-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/bahcelievler-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/kucukcekmece-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/esenyurt-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/basaksehir-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/zeytinburnu-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/bagcilar-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+/beylikduzu-inoksan-bulasik-makinesi-servisi  /inoksan-bulasik-makinesi-servisi  301
+
+/sisli-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/beyoglu-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/fatih-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/besiktas-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/bakirkoy-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/bahcelievler-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/kucukcekmece-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/esenyurt-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/basaksehir-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/zeytinburnu-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/bagcilar-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+/beylikduzu-oztiryakiler-bulasik-makinesi-servisi  /oztiryakiler-bulasik-makinesi-servisi  301
+
+/sisli-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/beyoglu-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/fatih-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/besiktas-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/bakirkoy-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/bahcelievler-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/kucukcekmece-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/esenyurt-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/basaksehir-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/zeytinburnu-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/bagcilar-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301
+/beylikduzu-maksan-bulasik-makinesi-servisi  /maksan-bulasik-makinesi-servisi  301

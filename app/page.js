@@ -2,7 +2,7 @@ import Link from "next/link";
 import { site, telLink, waLink } from "@/lib/site";
 import {
   districts, districtPath, services, brandPath,
-  priorityBrands, otherBrands, matrixDistricts, matrixPath,
+  priorityBrands, otherBrands,
 } from "@/lib/data";
 import BrandCard from "@/components/BrandCard";
 import CtaBand from "@/components/CtaBand";
@@ -313,18 +313,6 @@ export default function HomePage() {
                     {b.models.length}+ {b.name} modeline arıza tespiti, onarım, periyodik
                     bakım ve yedek parça hizmeti.
                   </p>
-
-                  <div className="mt-4 flex flex-wrap gap-1.5">
-                    {matrixDistricts().slice(0, 6).map((d) => (
-                      <Link
-                        key={d.slug}
-                        href={matrixPath(b, d)}
-                        className="rounded-full bg-steel-50 px-2.5 py-1 text-[11px] font-semibold text-steel-600 transition hover:bg-brand-50 hover:text-brand-700"
-                      >
-                        {d.name}
-                      </Link>
-                    ))}
-                  </div>
 
                   <Link
                     href={brandPath(b)}

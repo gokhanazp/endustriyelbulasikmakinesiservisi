@@ -40,6 +40,15 @@ Tüm içerik **`lib/data.js`** dosyasındadır. Marka, model veya ilçe ekleyip
 Şu an markalar premium monogram kartıyla gösterilir. Gerçek logo eklemek için:
 `public/logos/{slug}.png` koyup `components/BrandCard.js` içinde monogramı `<img>` ile değiştirin.
 
+## Yönlendirmeler (`public/_redirects`)
+
+Cloudflare Pages `public/_redirects` dosyasını okur ve yönlendirmeler statik
+dosyalardan **önce** çalışır. Şu an 48 adet marka × ilçe sayfası buradan
+ilgili marka sayfasına 301 ile yönlendiriliyor.
+
+> ⚠️ Bu sayfalar Google tarafından doorway kümesi olarak okunduğu için
+> kaldırıldı. Yeniden üretmeden önce `lib/data.js` içindeki uyarıyı okuyun.
+
 ## SEO
 
 - Her sayfada özel `title` + `description` (hedef kelimeler: *endüstriyel bulaşık
